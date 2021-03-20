@@ -1,0 +1,26 @@
+{
+    "name": "node-js-snippet",
+    "displayName": "node-js-snippet",
+    "publisher": "abdoseadaa",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/abdoseadaa/node-js-snippets.git"
+    },
+    "icon": "icon.png",
+    "description": "nodejs / express snippets generator",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.54.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/snippets.code-snippets"
+            }
+        ]
+    }
+}
