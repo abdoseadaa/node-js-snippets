@@ -13,9 +13,12 @@
 		"body": [
 			"const express = require('express')",
             "const app = express()",
+            "require('dotenv').config()",
             "const port = process.env.PORT || 5000",
             "",
-            "",
+            "// !important! ",
+            "// you need to install the following libraries |express|[dotenv > if required]",
+            "// or run this command >> npm i express dotenv ",
             "",
             "app.get('/' , (req , res)=>{", 
             "",
@@ -34,10 +37,14 @@
 		"body": [
 			"const express = require('express')",
             "const app = express()",
+            "require('dotenv').config()",
             "const port = process.env.PORT || 5000",
             "",
+            "// !important! ",
+            "// you need to install the following libraries |express|ejs|[dotenv > if required]",
+            "// or run this command >> npm i express ejs dotenv ",
             "",
-            "app.set('view engine', '${0:engine_name}')",
+            "app.set('view engine', '${0:engine}')",
             "",
             "",
             "",
@@ -87,8 +94,9 @@
     "create middleware function": {
 		"prefix": "app.mid",
 		"body": [
-            "(req , res , next)=>{", 
+            "module.exports = (req , res , next)=>{", 
                 "// middleware code here",
+                "$",
             "}"
       
 		],
@@ -97,7 +105,7 @@
     "create async middleware function": {
 		"prefix": "app.mid.as",
 		"body": [
-            "async (req , res , next)=>{", 
+            "module.exports = async (req , res , next)=>{", 
                 "// async middleware code here",
             "}"
 		],
@@ -106,7 +114,7 @@
     "create async controller function": {
 		"prefix": "app.cont.as",
 		"body": [
-            "async (req , res)=>{", 
+            "module.exports = async (req , res)=>{", 
                 "// async controller code here",
             "}"
 		],
@@ -115,7 +123,7 @@
     "create controller function": {
 		"prefix": "app.cont",
 		"body": [
-            "(req , res)=>{", 
+            "module.exports = (req , res)=>{", 
                 "// controller code here",
             "}"
 		],
@@ -124,7 +132,7 @@
     "create liner arrow function": {
 		"prefix": "ar",
 		"body": [
-            "()=>{}"
+            "()=>{$1}"
 		],
 		"description": "create liner arrow function"
 	},
@@ -205,10 +213,88 @@
     "set server's view engine": {
 		"prefix": "app.view",
 		"body": [
-            "app.set('view engine', '${0:engine_name}')"
+            "app.set('view engine', '${0:engine}')"
         ],
-		"description": "set server engine view "
+		"description": "set server view engine"
 	},
-    
+    "create require statement": {
+		"prefix": "req",
+		"body": [
+			"const $1 = require('$1')",
+		],
+		"description": "create require statement"
+	},
+    "create require statement with different args": {
+		"prefix": "app.req",
+		"body": [
+			"const $1 = require('$2')",
+		],
+		"description": "create require statement with different args"
+	},
+    "serve express static files": {
+		"prefix": "app.static",
+		"body": [
+			"app.use(express.static('public'));",
+		],
+		"description": "serve express static files"
+	},
+    "parse request body": {
+		"prefix": "app.parse",
+		"body": [
+			"app.use(express.urlencoded({ extended: true }));",
+            "app.use(express.json());",
+		],
+		"description": "parse request body"
+	},
+    "connect to to mongoDB": {
+		"prefix": "app.connect",
+		"body": [
+			"// required libs : mongoose | colors",
+            "// run the following command",
+            "// npm i mongoose colors",
+            "",
+            "const colors = require('colors');",
+            "const mongoose = require('mongoose')",
+            "mongoose.connect(process.env.URI , { useNewUrlParser : true, useUnifiedTopology : true})",
+            ".then((res)=>console.log('> Connected...'.bgCyan))",
+            ".catch(err=>console.log(`> Error while connecting to mongoDB : ${err.message}`.underline.red ))",
+
+
+		],
+		"description": "connecto to mongoDB"
+	},
+    "create mongoDB model": {
+		"prefix": "app.model",
+		"body": [
+			"const mongoose = require('mongoose')    ",
+
+           "const ${1:Schema Name} = mongoose.Schema({",
+           "    name : {",
+           "        type : String,",
+           "        default : 'default txt',",
+           "    },",
+           "})",
+           "module.exports =  mongoose.model( '${2:model name}' , ${1:Schema Name})",
+
+		],
+		"description": "create mongoDB model"
+	},
+    "create new mongodb document": {
+		"prefix": "app.doc",
+		"body": [
+            "// you need to require Model first",
+            "// e.g >> const Model = require('./models/Model')",
+			"try { ",
+            "    const ${1:doc} = new ${2:Model}({",
+                    "     // document data as an object here",
+                "}) ",
+            "    const result = await ${1:doc}.save() ",
+            "    console.log(result) ",
+            "  } catch (error) { ",
+            "    console.log(error.message) ",
+            "  } ",
+		],
+		"description": "create new mongodb document"
+	},
 
 }

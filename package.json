@@ -1,14 +1,14 @@
 {
     "name": "node-js-snippet",
-    "displayName": "node-js-snippet",
+    "displayName": "Nodejs Snippets",
     "publisher": "abdoseadaa",
     "repository": {
         "type": "git",
         "url": "https://github.com/abdoseadaa/node-js-snippets.git"
     },
     "icon": "icon.png",
-    "description": "nodejs / express snippets generator",
-    "version": "0.0.1",
+    "description": "Nodejs / Express / MongoDB / snippets generator",
+    "version": "1.1.2",
     "engines": {
         "vscode": "^1.54.0"
     },
